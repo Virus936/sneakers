@@ -1,12 +1,13 @@
 import React, {useState} from "react"
 import styled from 'styled-components'
+import {ReactComponent as Close} from '../../icons/icon-close.svg'
 import size from '../../params/setting'
 
 function Nav({isActive, setIsActive}){
   return(
     <Container className={isActive&&'active'}>
       <div>
-        <span onClick={() => setIsActive(!isActive)}>x</span>
+        <span onClick={() => setIsActive(!isActive)}><Close /></span>
         <a>collections</a>
         <a>men</a>
         <a>women</a>
@@ -38,14 +39,14 @@ const Container = styled.nav`
 
     div{
       transform:translateX(0%);
-      transition:transform .4s linear;
+      transition:transform .2s linear;
     }
   }
   div{
     background:white;
     transform:translateX(-100%);
     width:80%;
-    transition:transform .4s linear;
+    transition:transform .2s linear;
 
     @media(min-width:${size.mobile}){
       display:flex;
@@ -66,6 +67,8 @@ const Container = styled.nav`
     span{
       display:block;
       color:grey;
+      padding-top:1em;
+      padding-bottom:3em;
       @media(min-width:${size.mobile}){
         display:none;
       }
