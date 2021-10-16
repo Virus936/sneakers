@@ -27,6 +27,7 @@ const Container = styled.nav`
   bottom:0;
   left:0;
   right:0;
+  z-index:99;
   @media(min-width:${size.mobile}){
     position:relative;
     width:auto;
