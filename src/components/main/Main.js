@@ -1,86 +1,60 @@
 import React, {useState} from "react"
 import styled from 'styled-components'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import Product1 from '../../icons/image-product-1.jpg'
-import Product2 from '../../icons/image-product-2.jpg'
-import Product3 from '../../icons/image-product-3.jpg'
-import Product4 from '../../icons/image-product-4.jpg'
-import {ReactComponent as LeftArrow} from '../../icons/icon-previous.svg'
-import {ReactComponent as RightArrow} from '../../icons/icon-next.svg'
-
-const pictures = [
-  Product1,
-  Product2,
-  Product3,
-  Product4,
-]
-
+import Carouselle from '../carousel/Carousel'
+import Price from '../price/Price'
+import size, {color} from '../../params/setting'
+import OrderForm from '../form/OrderForm'
 
 function Main() {
 
+  const onSubmit = e=> e.preventDefault()
   return (
     <Container>
-      <Car 
-        useKeyboardArrows={true} 
-        infiniteLoop={true}
-        showThumbs={false}
-        showIndicators={false}
-        showStatus={false}
-        renderArrowPrev={(onClickHandler, hasPrev, label) =>
-            hasPrev && (
-              <button type="button" onClick={onClickHandler} title={label} >
-                <LeftArrow />
-              </button>
-            )
-        }
-        renderArrowNext={(onClickHandler, hasNext, label) =>
-            hasNext && (
-              <button type="button" onClick={onClickHandler} title={label}  >
-                <RightArrow />
-              </button>
-            )
-        }
-      > 
-
-        {
-          pictures.map(pic => {
-            return ( 
-              <div>
-                <img src={pic} alt="" />
-              </div>
-            )          
-          })
-        }
-
-      </Car>
-
-      <leftArrow />
+      <Carouselle />
+      <div className="desc">
+        <h1 className="enterprise">sneaker company</h1>
+        <h1 className="product__title">fall limited edition sneakers</h1>
+        <p>These low-profile sneakers are your perfect casual weaer companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.</p>
+        <Price
+          price={250}
+          reduction={12}
+        />
+        <OrderForm onSubmit={onSubmit} />
+      </div>
     </Container>
   )
 }
-const Car = styled(Carousel)`
-  button{
-    position:absolute;
-    z-index:98;
-    width:3em;
-    aspect-ratio:1;
-    top:50%;
-    border:none;
-    background:white;
-    border-radius:50%;
-    &:nth-of-type(1){
-      left:20px;
-    }
-    &:nth-of-type(2){
-      right:20px;
-    }
-  }
-  
-`
 
 const Container = styled.main`
-  background:violet;
+  @media(min-width:${size.mobile}){
+    display:flex;
+    margin:auto;
+    max-width:900px;
+    >div:nth-child(1){
+      flex:1;
+    }
+    >div:nth-child(2){
+      flex:1;
+    }
+
+  }
+  .desc{
+    padding:1em;
+    .enterprise{
+      text-transform:uppercase;
+      font-size:1em;
+      color:${color.primary};
+      letter-spacing:2px;
+      margin: .5em 0;
+    }
+    .product__title{
+      text-transform:capitalize;
+      margin: .5em 0;
+    }
+
+    p{
+      line-height:1.5em;
+    }
   }
 `
 
