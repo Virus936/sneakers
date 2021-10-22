@@ -7,7 +7,7 @@ import OrderForm from '../form/OrderForm'
 
 function Main() {
 
-  const onSubmit = e=> e.preventDefault()
+  //const onSubmit = e=> e.preventDefault()
   return (
     <Container>
       <Carouselle />
@@ -19,7 +19,7 @@ function Main() {
           price={250}
           reduction={12}
         />
-        <OrderForm onSubmit={onSubmit} />
+        <OrderForm  />
       </div>
     </Container>
   )

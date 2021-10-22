@@ -63,6 +63,7 @@ const Car = styled(Carousel)`
     width:3em;
     aspect-ratio:1;
     top:50%;
+    transform:translateY(-50%);
     border:none;
     background:white;
     border-radius:50%;
@@ -76,7 +77,7 @@ const Car = styled(Carousel)`
   
   .img{
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     width:100%;
     aspect-ratio:9/7;
 

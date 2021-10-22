@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import styled from 'styled-components'
-import {color} from '../../params/setting'
+import size,{color} from '../../params/setting'
 
 function Button({children}){
   return(
@@ -19,6 +19,11 @@ const Container = styled.button`
         color:white;
         border:none;
         border-radius:4px;
+        cursor:pointer;
+
+        @media(min-width:${size.mobile}){
+          flex:1;
+        }
 `
 
 export default Button

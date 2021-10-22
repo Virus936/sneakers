@@ -5,10 +5,20 @@ import {ReactComponent as Logo} from '../../icons/logo.svg'
 import {ReactComponent as Hamburger} from '../../icons/icon-menu.svg'
 import {ReactComponent as Cart} from '../../icons/icon-cart.svg'
 import Avatar from '../../icons/image-avatar.png'
-import size from '../../params/setting'
+import size,{color} from '../../params/setting'
+
+
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCount } from '../../features/counter/counterSlice';
+
+
+
+
 
 function Header(){
   const [isActive, setIsActive] = useState(false)
+  const count = useSelector(selectCount)
+
   return(
     <Container>
       <Hamburger onClick={() => setIsActive(!isActive)}/>
@@ -17,6 +27,8 @@ function Header(){
       <Nav isActive={isActive} setIsActive={setIsActive}  />
       <div className='item basket'>
         <Cart />
+        { count!=0&& <span> {count} </span> }
+
       </div>
       <div className="item">
         <img src={Avatar} alt="" />
@@ -48,7 +60,21 @@ const Container = styled.header`
       aspect-ratio:1;
     }
     &.basket{
+      position:relative;
       margin-left:auto;
+      span{
+        display:block;
+        position:absolute;
+        top:-25%;
+        right:25%;
+        background:${color.primary};
+        width:2em;
+        aspect-ratio:1;
+        border-radius:99em;
+        text-align:center;
+        font-size:.4em;
+        font-weight:600;
+      }
     }
   }
 
